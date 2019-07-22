@@ -1,0 +1,41 @@
+{% extends "layout.html" %}
+{% block title %}Results{% endblock %}
+
+{% block message %}
+{% endblock %}
+
+{% block content %}
+        <h1 class="text-center">Outcome</h1>
+            <ul class="list-group">
+                {% for category, classification in output.items() %}
+                    {% if classification == 1 %}
+                        <li class="list-group-item list-group-item-success text-center">This project is certainly {{category}}</li>
+                    {% endif %}
+                {% endfor %}
+                {% for index in labels %}
+                <li class="list-group-item list-group-item-primary text-center">It contains some {{group[index]}}</li>
+                {% endfor %}
+                <br>
+                <br>
+                
+                <div class="list-group">
+                    {% if recommended_projects %}
+                    <h1 class="text-center">Recommendations</h1>
+                        {% for project in recommended_projects['title'] %}
+                            <div class="card-deck">
+                                    <div class="card">
+                                    <div class="card-body">
+                                        <h5 class="card-title">{{ recommended_projects['title'][project] }}</h5>
+                                        <p class="card-text">{{  recommended_projects['description'][project][100:300] }}</p>
+                                    </div>
+                                    <div class="card-footer">
+                                        
+                                    </div>
+                                    </div>
+                            </div>
+                        {% endfor %}
+                    {% endif %}
+
+
+{% endblock %}
+
